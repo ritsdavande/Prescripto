@@ -138,13 +138,13 @@ const allDoctors = async (req, res) => {
 const adminDashboard = async (req, res) => {
   try {
     const doctors = await Doctor.find({});
-    const users = await userModel.find({});
     const appointments = await appointmentModel.find({});
-
+    // Compute unique patient count from appointments
+    const patientIds = new Set(appointments.map(app => app.userId));
     const dashData = {
       doctors: doctors.length,
       appointments: appointments.length,
-      patients: users.length,
+      patients: patientIds.size,
       latestAppointments: appointments.reverse().slice(0, 5)
     };
 

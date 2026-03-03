@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     // Add your authentication logic here
     try{
-      if(state==='Signup'){
+      if(state==='Sign Up'){
         const {data}=await axios.post(backend+"/api/user/register",{name,email,password})
         if(data.success){
           localStorage.setItem("token",data.token)
