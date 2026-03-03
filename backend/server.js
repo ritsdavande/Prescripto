@@ -31,20 +31,11 @@ app.get("/api/test", (req, res) => {
   });
 });
 
-// Initialize connections and start server
-const startServer = async () => {
-  try {
-    await connectDB();
-    await connectCloudinary();
-    
-    // Start server only after successful connections
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  } catch (error) {
-    console.error("Failed to start server:", error);
-    process.exit(1);
-  }
-};
+connectDB();
+connectCloudinary();
 
-startServer();
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+export default app;
